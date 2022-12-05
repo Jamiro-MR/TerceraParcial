@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 
+int a=0;
+
 struct nodo{
 	struct nodo* hijo_izq;
 	struct nodo* hijo_der;
@@ -33,10 +35,18 @@ void insertarNodo(struct nodo* nd, int dato){
 	}
 }
 
+void busqueda(){
+	printf("¿Que numero desea buscar?\n");
+	scanf("%d", a);
+}
+
 int main(){
 	struct nodo* raiz = NULL;
 	raiz = nuevoNodo(8);
 	insertarNodo(raiz, 3);
 	insertarNodo(raiz, 20);
 
+	busqueda;
+
+return 0;
 }
