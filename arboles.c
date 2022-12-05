@@ -1,7 +1,8 @@
+//Roberto - Jamiro-MR (Examen tercer parcial)
+
+//Inicio codigo arboles.c de la clase previa
 #include<stdio.h>
 #include<stdlib.h>
-
-int a=0;
 
 struct nodo{
 	struct nodo* hijo_izq;
@@ -34,19 +35,44 @@ void insertarNodo(struct nodo* nd, int dato){
 		}
 	}
 }
+//Fin codigo arboles.c
 
-void busqueda(){
-	printf("¿Que numero desea buscar?\n");
-	scanf("%d", a);
+int nivel = 0; //nivel
+void buscar(struct nodo* nd, int n){ //busqueda de nivel
+	nivel++;
+	if(n == nd->dato){
+		printf("El numero '%d' se encontrado en el siguiente nivel: %d\n", n, nivel); //numero localizado
+	}else if(n < nd->dato && nd->hijo_izq != NULL){
+		buscar(nd->hijo_izq, n);
+	}else if(n > nd->dato && nd->hijo_der != NULL){
+		buscar(nd->hijo_der, n);
+	}else{
+		printf("El número '%d' no se se ha podido localizar\n", n); //numero no localizado
+	}
 }
 
 int main(){
+	int numSearch = 0; //guardar numero a localizar
 	struct nodo* raiz = NULL;
-	raiz = nuevoNodo(8);
+	raiz = nuevoNodo(10); //Numeros cambiados para comprobar que ordena
+	insertarNodo(raiz, 2); //Además que los que teniamos eran solo 3
+	insertarNodo(raiz, 22);
+	insertarNodo(raiz, 4);
 	insertarNodo(raiz, 3);
-	insertarNodo(raiz, 20);
+	insertarNodo(raiz, 9);
+	insertarNodo(raiz, 6); //Así que agregue más y más grandes para comprobar si los encontraba.
+	insertarNodo(raiz, 14);
+	insertarNodo(raiz, 7);
+	insertarNodo(raiz, 99);
+	insertarNodo(raiz, 200);
+	insertarNodo(raiz, 45);
+	insertarNodo(raiz, 32);
 
-	busqueda;
+	printf("¿Que numero desea localizar?: \n"); //Input del usuario para especificar numero
+	scanf("%d", &numSearch);
+	//Función de busqueda
+	buscar(raiz, numSearch);
+	printf("Fin del programa. \n");
 
-return 0;
+	return 0; //fin del programa
 }
